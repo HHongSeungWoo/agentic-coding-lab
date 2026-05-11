@@ -1,14 +1,6 @@
 name: codex
 description: Codex tool profile for the Agentic Coding Lab.
 
-instructions:
-  target: AGENTS.md
-  managed_block_id: myagents:codex
-  fragments:
-    - id: rtk
-      path: instructions/rtk.md
-      activation: active
-
 artifacts:
   - id: rtk
     type: tool
