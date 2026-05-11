@@ -1,6 +1,8 @@
 # ACON: Optimizing Context Compression for Long-horizon LLM Agents
 
 - URL: https://arxiv.org/abs/2510.00615
+- Cite as: arXiv:2510.00615
+- DOI: 10.48550/arXiv.2510.00615
 - Authors: Minki Kang, Wei-Ning Chen, Dongge Han, Huseyin A. Inan, Lukas Wutschitz, Yanzhi Chen, Robert Sim, Saravan Rajmohan
 - Venue / source: arXiv preprint, with an OpenReview record as LLA 2026 Poster; a separate OpenReview record shows submission to ICLR 2026.
 - Published: arXiv submitted 2025-10-01, v2 revised 2025-10-17; OpenReview LLA poster published 2026-03-02 and last modified 2026-04-10.
@@ -25,7 +27,7 @@ ACON has three pieces:
 
 1. It compresses either interaction history or the latest observation with an LLM compressor. History compression runs only when history exceeds a threshold; observation compression runs only when an observation exceeds a threshold. The compressed content replaces raw context for later agent steps.
 2. It optimizes the natural-language compression guideline instead of updating the main agent model. The utility step runs tasks with no compression and with compression, selects cases where full context succeeds but compressed context fails, then asks an optimizer LLM to identify what the compressed context lost. The resulting feedback is aggregated into updated compression guidelines.
-3. It adds a compression step after utility optimization. For successful compressed trajectories, the optimizer identifies redundant spans and refines the guideline toward shorter outputs. The paper calls the reward-first step UT and the cost-focused refinement CO.
+3. It adds a compression step after utility optimization. For successful compressed trajectories, the optimizer identifies redundant spans and refines the guideline toward shorter outputs. The paper calls the reward-first step UT and the cost-focused refinement CO; UT+CO, written as UTCO in result tables, is the combined utility and compression optimization setting.
 
 The method includes distillation: a large teacher compressor with the optimized guideline generates compressed outputs, and smaller models such as Qwen3-14B, Qwen3-8B, and Phi-4 are LoRA-trained on those input/output pairs. The student compressor then replaces the large compressor at inference time.
 
@@ -37,7 +39,7 @@ The paper evaluates on AppWorld, OfficeBench, and 8-objective QA, all framed as 
 
 Main results:
 
-- AppWorld with gpt-4.1: no compression scored 56.0 average accuracy with 9.93k peak tokens. ACON UTCO history compression scored 56.5 with 7.33k peak tokens. ACON UTCO observation compression scored 53.6 with 7.43k peak tokens.
+- AppWorld with gpt-4.1: no compression scored 56.0 average accuracy with 9.93k peak tokens. ACON UT+CO (UTCO) history compression scored 56.5 with 7.33k peak tokens. ACON UT+CO (UTCO) observation compression scored 53.6 with 7.43k peak tokens.
 - OfficeBench with gpt-4.1: no compression scored 76.84 with 7.27k peak tokens. ACON history UT scored 74.74 with 4.93k peak tokens; ACON observation UT scored 73.68 with 6.55k peak tokens.
 - 8-objective QA with gpt-4.1: no compression scored 0.366 EM / 0.488 F1 with 10.35k peak tokens. ACON history UT scored 0.373 EM / 0.494 F1 with 4.71k peak tokens.
 - Distilled compressors retained over 95% of teacher performance across reported benchmarks, according to the paper's summary.
@@ -45,7 +47,7 @@ Main results:
 
 Ablations matter more than headline numbers for design. Moderate thresholds worked best: 4096 tokens for history and 1024 tokens for observation in the AppWorld ablation. Smaller thresholds compressed more often but hurt accuracy; larger thresholds preserved more raw context but saved less. The prompt-optimizer ablation found o3 with contrastive feedback strongest on AppWorld history compression, while removing contrastive feedback or switching optimizer models reduced accuracy.
 
-Qualitative examples support the mechanism. In one AppWorld case, compressed history preserved the need to authenticate, carry the returned `access_token`, and pass it into file-system calls, preventing repeated 401 errors. In an observation-compression example, optimized compression preserved JSON structure and a needed `play_music` API that naive prompting omitted.
+Qualitative examples support the mechanism. Appendix E.1, "AppWorld History Compression Example," shows ACON preserving state such as the phone `access_token`, search parameters, target dates, message IDs, sender info, pending actions, and guardrails. Appendix E.4, "AppWorld Observation Compression Example," shows observation compression over a long Spotify API-description output and includes the task-relevant `play_music` API details that must survive compression.
 
 ## Limits
 
