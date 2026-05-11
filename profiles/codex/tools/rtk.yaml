@@ -1,0 +1,25 @@
+id: rtk
+name: RTK - Rust Token Killer
+type: command-output-optimizer
+activation: active
+source:
+  repository: https://github.com/rtk-ai/rtk
+  documentation: https://www.rtk-ai.app/guide
+local:
+  binary: rtk
+  expected_path: <HOME>/.local/bin/rtk
+install:
+  preferred: curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+  alternatives:
+    - brew install rtk
+    - cargo install --git https://github.com/rtk-ai/rtk
+codex:
+  upstream_init: rtk init -g --codex
+  managed_installation: pending-bootstrap
+verification:
+  - rtk --version
+  - rtk gain
+  - which rtk
+usage:
+  default_rule: Prefix shell commands with rtk unless raw output is required.
+  raw_output: Use rtk proxy <command> when unfiltered output is needed.

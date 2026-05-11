@@ -18,6 +18,10 @@
 *.tmp
 *.bak
 
+# Local workflow scratch output. Durable decisions belong in ADRs, research
+# notes, or profile artifacts instead.
+/docs/superpowers/
+
 # Editor and OS noise.
 .DS_Store
 Thumbs.db
