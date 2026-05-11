@@ -174,7 +174,7 @@ For coding-agent UI work, the best use cases are reading selected frames before 
 
 Verification commands run against the temp clone:
 
-- `rtk npm install`: first sandboxed run failed because npm cache under `~/.npm` was read-only; escalated run succeeded.
+- `rtk npm install`: first sandboxed run failed because the user npm cache under `~/.npm` was read-only; escalated run succeeded.
 - `rtk npm run build`: passed and generated `dist/server.js`, `dist/server.cjs`, sourcemaps, and declaration files.
 - `rtk npm audit` and `rtk npm audit --omit=dev`: reported one high-severity production vulnerability cluster in `@modelcontextprotocol/sdk` with no fix available.
 - `rtk bun --version`: failed because Bun is not installed in this environment, so `bun socket` and a live Figma plugin run were not tested.
