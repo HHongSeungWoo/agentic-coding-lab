@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -n --arg context 'Caveman mode active by default for visible responses. Apply installed caveman skill behavior. Keep technical terms, code, commands, errors, commit messages, and PR text exact/normal. User can disable with normal mode. Hidden reasoning unaffected.' '{hookSpecificOutput:{hookEventName:\"SessionStart\",additionalContext:$context}}'",
+            "timeout": 5,
+            "statusMessage": "Activating caveman"
+          }
+        ]
+      }
+    ]
+  }
+}
