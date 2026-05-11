@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agentic Research"
+  short_description: "Research repos and papers into Markdown notes"
+  default_prompt: "Use $agentic-research to investigate AI coding workflow research."

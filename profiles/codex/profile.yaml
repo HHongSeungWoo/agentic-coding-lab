@@ -10,6 +10,10 @@ artifacts:
     type: skill
     path: ../../shared/skills/caveman
     activation: active
+  - id: agentic-research
+    type: skill
+    path: skills/agentic-research
+    activation: active
   - id: codex-hooks
     type: hook-config
     path: hooks/hooks.json
