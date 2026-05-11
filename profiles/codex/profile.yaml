@@ -1,0 +1,9 @@
+name: codex
+description: Codex tool profile for the Agentic Coding Lab.
+
+instructions:
+  target: AGENTS.md
+  managed_block_id: myagents:codex
+  fragments: []
+
+artifacts: []
