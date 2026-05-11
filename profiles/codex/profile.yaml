@@ -14,3 +14,7 @@ artifacts:
     type: tool
     path: tools/rtk.yaml
     activation: active
+  - id: caveman
+    type: skill
+    path: ../../shared/skills/caveman
+    activation: active

@@ -1,0 +1,47 @@
+name: Vendor Skills
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify-caveman:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify caveman vendor patch
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          upstream="shared/upstreams/caveman/SKILL.upstream.md"
+          local="shared/skills/caveman/SKILL.md"
+          patch="shared/upstreams/caveman/local.patch"
+
+          test -f "$upstream"
+          test -f "$local"
+          test -f "$patch"
+
+          grep -q '^name: caveman$' "$upstream"
+          grep -q '^name: caveman$' "$local"
+          grep -q '"repo": "JuliusBrussee/caveman"' shared/upstreams/caveman/upstream.json
+          grep -q '"source_path": "skills/caveman/SKILL.md"' shared/upstreams/caveman/upstream.json
+
+          expected_sha="$(sed -n 's/.*"sha256": "\([0-9a-f]\{64\}\)".*/\1/p' shared/upstreams/caveman/upstream.json)"
+          actual_sha="$(sha256sum "$upstream" | awk '{print $1}')"
+          test -n "$expected_sha"
+          test "$actual_sha" = "$expected_sha"
+
+          tmp="$(mktemp)"
+          set +e
+          git diff --no-index --abbrev=40 -- "$upstream" "$local" > "$tmp"
+          code=$?
+          set -e
+
+          if [ "$code" -ne 0 ] && [ "$code" -ne 1 ]; then
+            exit "$code"
+          fi
+
+          diff -u "$patch" "$tmp"

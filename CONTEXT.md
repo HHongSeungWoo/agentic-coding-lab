@@ -52,6 +52,22 @@ _Avoid_: installation manifest, package manifest, generated config
 An **Agentic Coding Artifact** that is useful across more than one **Tool Profile** and can be adapted into tool-specific forms.
 _Avoid_: global config, default profile
 
+**Vendored External Skill**:
+A **Shared Artifact** imported from an external skill repository as an upstream snapshot plus a local derivative.
+_Avoid_: copied skill, forked prompt
+
+**Upstream Snapshot**:
+The byte-preserved source file fetched from the external repository for a **Vendored External Skill**.
+_Avoid_: editable base copy, reference note
+
+**Local Derivative**:
+The optimized local form of a **Vendored External Skill** used by this lab.
+_Avoid_: patched copy, working copy
+
+**Vendor Patch Invariant**:
+The rule that the diff from an **Upstream Snapshot** to its **Local Derivative** must match the recorded patch file exactly.
+_Avoid_: informal merge note, remembered workflow
+
 **Bootstrap Script**:
 A helper that places **Authoritative Artifacts** into tool-specific local paths on a machine.
 _Avoid_: source of truth, installer
@@ -98,6 +114,9 @@ _Avoid_: best-effort merge, automatic overwrite
 - A **Tool Profile** owns exactly one **Profile Manifest**.
 - The **Codex Profile** is the initial **Tool Profile**.
 - A **Shared Artifact** can support more than one **Tool Profile**.
+- A **Vendored External Skill** is a **Shared Artifact**.
+- A **Vendored External Skill** has one **Upstream Snapshot**, one **Local Derivative**, and one recorded patch.
+- The **Vendor Patch Invariant** makes upstream refreshes reviewable without conversation memory.
 - A **Bootstrap Script** places **Authoritative Artifacts** onto a local machine.
 - A **Bootstrap Script** is not itself the source of truth for agent behavior.
 - A **Managed Installation** changes only through explicit install, update, or uninstall actions.
