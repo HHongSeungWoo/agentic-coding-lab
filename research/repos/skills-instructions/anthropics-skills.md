@@ -31,7 +31,7 @@ The local spec file now delegates to `https://agentskills.io/specification`. Tha
 - Domain-specific workflow: Very strong. Document skills, MCP building, frontend design, web testing, communications, artifacts, brand styling, and generative art each encode domain-specific procedures and constraints.
 - Error prevention: Strong. Document skills include validation and QA loops, formula error checking, XML schema validation, visual inspection, and explicit pitfalls.
 - Self-learning / memory: Conditional. The repo does not implement long-term agent memory, but `skill-creator` has iterative eval/improve loops, history files, train/test split, and description optimization.
-- Popular skills: Document manipulation (`pdf`, `docx`, `pptx`, `xlsx`), `skill-creator`, `mcp-builder`, `webapp-testing`, `frontend-design`, and `web-artifacts-builder` are most relevant to agentic coding and tool-use research.
+- Popular skills: No usage or install-frequency data was reviewed, so this note does not rank skill popularity. Locally relevant skills for agentic coding and tool-use research include document manipulation (`pdf`, `docx`, `pptx`, `xlsx`), `skill-creator`, `mcp-builder`, `webapp-testing`, `frontend-design`, and `web-artifacts-builder`.
 
 ## Core Execution Path
 
@@ -60,7 +60,7 @@ The architecture is file-system native:
 - `skills/<skill>/scripts/`: executable helpers for deterministic work or local workflow setup.
 - `skills/<skill>/reference*/`, `examples/`, `templates/`, `assets/`, `themes/`, `canvas-fonts/`: additional materials loaded or used only when relevant.
 
-The most sophisticated skill-internal architecture appears in `skill-creator`: it has `agents/` prompts, `scripts/` for validation/eval/reporting/aggregation, `references/schemas.md`, an `eval-viewer/`, and an HTML review asset. Document skills share office helper code and large OOXML schema trees, suggesting production-grade document validation machinery reused across `docx`, `pptx`, and `xlsx`.
+The most sophisticated skill-internal architecture appears in `skill-creator`: it has `agents/` prompts, `scripts/` for validation/eval/reporting/aggregation, `references/schemas.md`, an `eval-viewer/`, and an HTML review asset. Document skills share office helper code and large OOXML schema trees, suggesting substantial document validation machinery reused across `docx`, `pptx`, and `xlsx`.
 
 ## Design Choices
 
@@ -132,6 +132,8 @@ For a coding-agent lab, the repository suggests a roadmap: make coding workflows
 - `https://agentskills.io/specification`
 - `/tmp/myagents-research/anthropics-skills/template/SKILL.md`
 - `/tmp/myagents-research/anthropics-skills/skills/brand-guidelines/SKILL.md`
+- `/tmp/myagents-research/anthropics-skills/skills/canvas-design/SKILL.md`
+- `/tmp/myagents-research/anthropics-skills/skills/doc-coauthoring/SKILL.md`
 - `/tmp/myagents-research/anthropics-skills/skills/internal-comms/SKILL.md`
 - `/tmp/myagents-research/anthropics-skills/skills/internal-comms/examples/`
 - `/tmp/myagents-research/anthropics-skills/skills/frontend-design/SKILL.md`
@@ -153,6 +155,8 @@ For a coding-agent lab, the repository suggests a roadmap: make coding workflows
 - `/tmp/myagents-research/anthropics-skills/skills/skill-creator/scripts/run_loop.py`
 - `/tmp/myagents-research/anthropics-skills/skills/skill-creator/scripts/improve_description.py`
 - `/tmp/myagents-research/anthropics-skills/skills/skill-creator/scripts/package_skill.py`
+- `/tmp/myagents-research/anthropics-skills/skills/slack-gif-creator/SKILL.md`
+- `/tmp/myagents-research/anthropics-skills/skills/theme-factory/SKILL.md`
 - `/tmp/myagents-research/anthropics-skills/skills/pdf/SKILL.md`
 - `/tmp/myagents-research/anthropics-skills/skills/pdf/forms.md`
 - `/tmp/myagents-research/anthropics-skills/skills/pdf/reference.md`
